@@ -65,6 +65,23 @@ kubectl create secret docker-registry ghcr-secret \\
   --namespace=default
 ```
 
+## Todo App (Python / Flask)
+
+A second app, [todo-app-python](https://github.com/faizan35/todo-app-python), lives in [`todo-app/`](todo-app) and has its own pipeline in [`.github/workflows/todo-app-ci-cd.yml`](.github/workflows/todo-app-ci-cd.yml). It only runs when files under `todo-app/` change (and the grade API pipeline ignores those changes).
+
+On each push to `main` the pipeline:
+
+1. Builds and pushes `ghcr.io/m1key0m/kubernetes-cicd-tutorial/todo-app:<sha>` (and `:latest`).
+2. Copies `todo-app/k8s/deployment.yaml` and `service.yaml` into the `todo-app/` folder of the GitOps repo (first run only) and bumps the image tag.
+
+Create the ArgoCD Application once:
+
+```bash
+kubectl apply -f todo-app/k8s/argocd-application.yaml
+```
+
+The app is exposed on NodePort `30080`. It uses the same `ghcr-secret` image pull secret as the grade API.
+
 ### Become a Cloud and DevOps Engineer
 
 Visit[https://m1key0m.github.io/rayanslim](https://m1key0m.github.io/rayanslim)

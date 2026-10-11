@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo App</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <h1>Python - ToDo List</h1>
+    <form action="/add" method="post">
+      <label for="newTask">Add a new task:</label>
+      <input type="text" id="newTask" name="newTask" required autofocus />
+      <button type="submit" class="add-button">Add</button>
+    </form>
+    <ul>
+      {% for task in tasks %}
+      <li>
+        <span>{{ loop.index }}.</span>
+        <span>{{ task }}</span>
+        <form action="/complete" method="post" style="display: inline">
+          <input type="hidden" name="taskIndex" value="{{ loop.index }}" />
+          <button type="submit">Complete</button>
+        </form>
+        <form action="/delete" method="post" style="display: inline">
+          <input type="hidden" name="taskIndex" value="{{ loop.index }}" />
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

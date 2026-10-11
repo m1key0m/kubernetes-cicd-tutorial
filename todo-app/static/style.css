@@ -1,0 +1,64 @@
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f8f8f8;
+
+  padding: 0;
+  margin-right: 500px;
+  margin-left: 500px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  border-bottom: 1px solid #eee;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+li span {
+  margin-right: 10px;
+}
+
+button {
+  cursor: pointer;
+  padding: 5px 10px;
+  border: none;
+  background-color: #4caf50;
+  color: #fff;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.add-button {
+  background-color: #337ab7; /* Blue color for the "Add" button */
+  color: #fff; /* White text color */
+  font-weight: bold; /* Bold text */
+}
+
+.add-button:hover {
+  background-color: #2e6da4; /* Darker blue on hover */
+}

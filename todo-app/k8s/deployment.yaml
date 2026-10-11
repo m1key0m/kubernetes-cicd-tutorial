@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-app
+  labels:
+    app: todo-app
+spec:
+  # Tasks are stored in memory, so keep a single replica
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-app
+  template:
+    metadata:
+      labels:
+        app: todo-app
+    spec:
+      imagePullSecrets:
+        - name: ghcr-secret
+      containers:
+        - name: todo-app
+          image: ghcr.io/m1key0m/kubernetes-cicd-tutorial/todo-app:latest
+          ports:
+            - containerPort: 5000

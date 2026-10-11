@@ -2,8 +2,14 @@ name: CI/CD Pipeline
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+      - 'todo-app/**'
+      - '.github/workflows/todo-app-ci-cd.yml'
   pull_request:
     branches: [ main ]
+    paths-ignore:
+      - 'todo-app/**'
+      - '.github/workflows/todo-app-ci-cd.yml'
 jobs:
   build-and-push:
     runs-on: self-hosted
