@@ -82,6 +82,18 @@ kubectl apply -f todo-app/k8s/argocd-application.yaml
 
 The app is exposed on NodePort `30080`. It uses the same `ghcr-secret` image pull secret as the grade API.
 
+## Flask Product API
+
+A third app, [Simple-Flask-App-Docker](https://github.com/chesahkalu/Simple-Flask-App-Docker), lives in [`flask-app/`](flask-app). It's a small REST API for a product list (`GET/POST /products`, `GET/PUT/DELETE /products/<id>`). Its pipeline, [`.github/workflows/flask-app-ci-cd.yml`](.github/workflows/flask-app-ci-cd.yml), works the same way as the todo app's: it builds `ghcr.io/m1key0m/kubernetes-cicd-tutorial/flask-app` and updates `flask-app/` in the GitOps repo.
+
+Create the ArgoCD Application once:
+
+```bash
+kubectl apply -f flask-app/k8s/argocd-application.yaml
+```
+
+The API is exposed on NodePort `30081`, for example `curl http://localhost:30081/products`.
+
 ### Become a Cloud and DevOps Engineer
 
 Visit[https://m1key0m.github.io/rayanslim](https://m1key0m.github.io/rayanslim)
