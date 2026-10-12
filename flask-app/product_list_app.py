@@ -24,7 +24,7 @@ CORS(app) # use the CORS class to pass in the app variable, this allows cross or
 
 products = [
     {'id': 143, 'name': 'Notebook', 'price': 5.49},
-    {'id': 144, 'name': 'Black Marker', 'price': 1.99}
+    {'id': 144, 'name': 'Black Marker', 'price': 1.99},
     {'id': 145, 'name': 'Fishing Rod', 'price': 199.95}
 ]
 
