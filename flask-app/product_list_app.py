@@ -8,6 +8,7 @@ All these operations will be achieved through the REST API endpoints in your Fla
 from flask import Flask # import the Flask class from the flask module
 from flask import request # import the request class from the flask module for handling and making HTTP requests
 from flask import jsonify # import the jsonify class from the flask module for converting a Python dictionary or list into JSON format
+from markupsafe import escape # import the escape function (installed with Flask) for safely inserting text into HTML
 from flask_cors import CORS # import the CORS class from the flask_cors module, this allows cross origin resource sharing which allows for use of your api by other domains
 # CORS is a Flask extension for handling Cross Origin Resource Sharing (CORS), making cross-origin AJAX possible. It is a way to relax the same-origin policy, which is a set of restrictions imposed by browsers to prevent interactions between resources from different origins.
 # you can configure CORS options to specify allowed origins, headers, and other settings according to your requirements.
@@ -25,6 +26,13 @@ products = [
     {'id': 143, 'name': 'Notebook', 'price': 5.49},
     {'id': 144, 'name': 'Black Marker', 'price': 1.99}
 ]
+
+# Home page: GET /. Shows the inventory title and the current product list as HTML. Example request - http://localhost:5070/
+@app.route('/', methods=['GET'])
+def home():
+    """home page with the inventory title and product list"""
+    rows = ''.join(f"<li>{escape(p['name'])} (${escape(p['price'])})</li>" for p in products) # escape product names so user-submitted text can't inject HTML
+    return f"<title>Mike's Inventory</title><h1>Mike's Inventory</h1><ul>{rows}</ul>"
 
 # REST API endpoints: (The REST API endpoints are the URLs that your application will expose to the outside world. These URLs will be used to perform CRUD operations on your data.)
 # Create a product: POST /products
