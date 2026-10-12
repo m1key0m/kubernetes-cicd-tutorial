@@ -32,7 +32,7 @@ products = [
 def home():
     """home page with the inventory title and product list"""
     rows = ''.join(f"<li>{escape(p['name'])} (${escape(p['price'])})</li>" for p in products) # escape product names so user-submitted text can't inject HTML
-    return f"<title>Mike's Inventory</title><h1>Mike's Inventory</h1><ul>{rows}</ul>"
+    return f"<title>Mike's Inventory</title><h1>Jenny's Inventory</h1><ul>{rows}</ul>"
 
 # REST API endpoints: (The REST API endpoints are the URLs that your application will expose to the outside world. These URLs will be used to perform CRUD operations on your data.)
 # Create a product: POST /products
